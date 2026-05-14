@@ -1,0 +1,164 @@
+{
+  "name": "Linkedin Agent copy",
+  "nodes": [
+    {
+      "parameters": {
+        "rule": {
+          "interval": [
+            {}
+          ]
+        }
+      },
+      "type": "n8n-nodes-base.scheduleTrigger",
+      "typeVersion": 1.3,
+      "position": [
+        -592,
+        -80
+      ],
+      "id": "8be6ed58-35f3-49d4-8f06-88779e1f5c82",
+      "name": "Schedule Trigger",
+      "notesInFlow": false
+    },
+    {
+      "parameters": {
+        "documentId": {
+          "__rl": true,
+          "value": "PLACEHOLDER_DOCUMENT_ID",
+          "mode": "list",
+          "cachedResultName": "Application",
+          "cachedResultUrl": "PLACEHOLDER_DOCUMENT_URL"
+        },
+        "sheetName": {
+          "__rl": true,
+          "value": "gid=0",
+          "mode": "list",
+          "cachedResultName": "Sheet1",
+          "cachedResultUrl": "PLACEHOLDER_SHEET_URL"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.googleSheets",
+      "typeVersion": 4.7,
+      "position": [
+        -432,
+        -80
+      ],
+      "id": "b5c94dfc-aa5d-4d49-bd9f-2797809ae9b9",
+      "name": "Get row(s) in sheet",
+      "credentials": {
+        "googleSheetsOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "Google Sheets OAuth2 API"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "f0b9d1f6-2ce5-4002-9db7-a493e69f0061",
+              "name": "matching",
+              "value": "={{ $json.Company }}-{{ $json['Job Title '] }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -256,
+        -80
+      ],
+      "id": "8931c42a-0ca3-4192-8fb4-c0c2c583f490",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "fieldsToAggregate": {
+          "fieldToAggregate": [
+            {
+              "fieldToAggregate": "matching"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.aggregate",
+      "typeVersion": 1,
+      "position": [
+        -80,
+        -80
+      ],
+      "id": "657ad0d4-3089-4b23-899d-a009b4209e5d",
+      "name": "Aggregate"
+    },
+    {
+      "parameters": {
+        "actorId": {
+          "__rl": true,
+          "value": "PLACEHOLDER_ACTOR_ID",
+          "mode": "list",
+          "cachedResultName": "Linkedin Jobs Scraper",
+          "cachedResultUrl": "PLACEHOLDER_ACTOR_URL"
+        },
+        "customBody": "{\n    \"count\": 1000,\n    \"scrapeCompany\": false,\n    \"splitByLocation\": false,\n    \"urls\": [\n        \"PLACEHOLDER_URL_1\",\n        \"PLACEHOLDER_URL_2\",\n        \"PLACEHOLDER_URL_3\"\n    ]\n}",
+        "timeout": {},
+        "authentication": "apifyOAuth2Api"
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        96,
+        -80
+      ],
+      "id": "ef6aa397-ff44-40a2-9e49-6e51b6e606f2",
+      "name": "Run an Actor",
+      "credentials": {
+        "apifyOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "Apify account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "resource": "Datasets",
+        "datasetId": "={{ $json.defaultDatasetId }}",
+        "offset": {},
+        "limit": 100,
+        "options": {},
+        "authentication": "apifyOAuth2Api"
+      },
+      "type": "@apify/n8n-nodes-apify.apify",
+      "typeVersion": 1,
+      "position": [
+        272,
+        -80
+      ],
+      "id": "9b0ca919-75a6-45d9-a7bf-b8bd232dd050",
+      "name": "Get dataset items",
+      "credentials": {
+        "apifyOAuth2Api": {
+          "id": "PLACEHOLDER_CREDENTIAL_ID",
+          "name": "Apify account"
+        }
+      }
+    }
+  ],
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "binaryMode": "separate",
+    "availableInMCP": false
+  },
+  "versionId": "7331edbd-d19f-4095-a042-4025b14115d0",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "PLACEHOLDER_INSTANCE_ID"
+  },
+  "id": "aLO5FeHxJftFcO39",
+  "tags": []
+}
