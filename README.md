@@ -32,11 +32,11 @@ AI-powered workflow built with n8n that automates the job application pipeline.
 
 ### Workflow
 
-![Workflow](assets/workflow-overview.png)
+![Workflow](linkedin-job-matching-agent/assets/workflow-overview.png)
 
 ### Dataset Example
 
-![Dataset](assets/dataset-example.png)
+![Dataset](linkedin-job-matching-agent/assets/dataset-example.png)
 
 ---
 
