@@ -1,3 +1,6 @@
+![n8n](https://img.shields.io/badge/Built%20With-n8n-orange)
+![OpenAI](https://img.shields.io/badge/AI-OpenAI-green)
+![License](https://img.shields.io/badge/license-MIT-blue)
 # AI Linkedin Job Matcher Agent using n8n workflow
 
 AI-powered workflow built with n8n that automates the job application pipeline.
@@ -15,6 +18,14 @@ AI-powered workflow built with n8n that automates the job application pipeline.
 5 = Excellent match
 * Generates personalized cover letters automatically
 * Saves generated documents to Google Docs in Drive.
+
+---
+
+## Why I Built This
+
+I built this workflow to automate and optimize my own job application process.
+
+Instead of manually reviewing hundreds of job postings, the workflow uses AI to identify relevant opportunities and generate tailored cover letters automatically.
 
 ---
 
